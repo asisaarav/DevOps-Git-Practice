@@ -1,0 +1,20 @@
+# .github/workflows/test-dispatch.yml in DEFAULT BRANCH
+name: Test Workflow Dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_env:
+        description: 'Test environment'
+        required: true
+        default: 'replica'
+        type: string
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Test
+        run: echo "Testing workflow dispatch with environment: ${{ github.event.inputs.test_env }}"
